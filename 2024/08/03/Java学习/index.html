@@ -519,10 +519,12 @@
 <li><code>copyOfRange(int[] original, int startIndex, int endIndex(取不到))</code>: 复制数组。</li>
 <li><code>toString(int[] a)</code>: 将数组转变为字符串格式。</li>
 </ul>
-<h4 id="6-Collections-类（集合类）"><a href="#6-Collections-类（集合类）" class="headerlink" title="6. Collections 类（集合类）"></a>6. <strong>Collections 类</strong>（集合类）</h4><ul>
+<h4 id="6-Collections-类（容器工具类）"><a href="#6-Collections-类（容器工具类）" class="headerlink" title="6. Collections 类（容器工具类）"></a>6. <strong>Collections 类</strong>（容器工具类）</h4><ul>
 <li><code>sort(List&lt;T&gt; list)</code>: 对列表进行排序**(适用于Arraylist)**。</li>
 <li><code>binarySearch(List&lt;? extends Comparable&lt;? super T&gt;&gt; list, T key)</code>: 使用二分搜索法来搜索列表。</li>
 <li><code>reverse(List&lt;?&gt; list)</code>: 反转列表中元素的顺序。</li>
+<li><code>swap(List&lt;?&gt; list,int indexa,int indexb)</code>: 交换列表中两个位置的元素。</li>
+<li><code>rotate(List&lt;?&gt; list,int len)</code>: 把List中的数据，向右滚动指定单位的长度。</li>
 <li><code>shuffle(List&lt;?&gt; list)</code>: 使用默认随机源随机排列指定列表中的元素。</li>
 </ul>
 <h4 id="7-List-接口（ArrayList、LinkedList）"><a href="#7-List-接口（ArrayList、LinkedList）" class="headerlink" title="7. List 接口（ArrayList、LinkedList）"></a>7. <strong>List 接口（ArrayList、LinkedList）</strong></h4><ul>
@@ -532,6 +534,39 @@
 <li><code>remove(int index)</code>: 移除列表中指定位置的元素。</li>
 <li><code>size()</code>: 返回列表中的元素数。</li>
 <li><code>index of(object a)</code>: 查找元素的索引（未找到返回-1）。</li>
+</ul>
+<h5 id="PS-LinkedList包含了链表（双向-、队列、双端队列的所有特性，可以当作任意一个去使用）"><a href="#PS-LinkedList包含了链表（双向-、队列、双端队列的所有特性，可以当作任意一个去使用）" class="headerlink" title="PS(LinkedList包含了链表（双向)、队列、双端队列的所有特性，可以当作任意一个去使用）"></a><strong>PS(LinkedList包含了链表（双向)、队列、双端队列的所有特性，可以当作任意一个去使用）</strong></h5><h5 id="1-作为链表（List）"><a href="#1-作为链表（List）" class="headerlink" title="1. 作为链表（List）"></a>1. 作为链表（<code>List</code>）</h5><ul>
+<li><p><strong>插入元素</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">LinkedList&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">list.add(<span class="string">&quot;Element&quot;</span>); <span class="comment">// 在末尾插入</span></span><br><span class="line">list.addFirst(<span class="string">&quot;Element at the beginning&quot;</span>); <span class="comment">// 在开头插入</span></span><br><span class="line">list.addLast(<span class="string">&quot;Element at the end&quot;</span>); <span class="comment">// 在末尾插入</span></span><br><span class="line">list.add(<span class="number">1</span>, <span class="string">&quot;Element at index 1&quot;</span>); <span class="comment">// 在指定位置插入</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>删除元素</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">list.remove(<span class="string">&quot;Element&quot;</span>); <span class="comment">// 删除指定元素</span></span><br><span class="line">list.removeFirst(); <span class="comment">// 删除第一个元素</span></span><br><span class="line">list.removeLast(); <span class="comment">// 删除最后一个元素</span></span><br><span class="line">list.remove(<span class="number">1</span>); <span class="comment">// 删除指定位置的元素</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>访问和修改元素</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">element</span> <span class="operator">=</span> list.get(<span class="number">1</span>); <span class="comment">// 获取指定位置的元素</span></span><br><span class="line">list.set(<span class="number">1</span>, <span class="string">&quot;New Element&quot;</span>); <span class="comment">// 修改指定位置的元素</span></span><br><span class="line"><span class="type">String</span> <span class="variable">firstElement</span> <span class="operator">=</span> list.getFirst(); <span class="comment">// 获取第一个元素</span></span><br><span class="line"><span class="type">String</span> <span class="variable">lastElement</span> <span class="operator">=</span> list.getLast(); <span class="comment">// 获取最后一个元素</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="2-作为队列（Queue）"><a href="#2-作为队列（Queue）" class="headerlink" title="2. 作为队列（Queue）"></a>2. 作为队列（<code>Queue</code>）</h5><ul>
+<li><p><strong>入队</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LinkedList&lt;String&gt; queue = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">queue.offer(<span class="string">&quot;Element&quot;</span>); <span class="comment">// 入队，成功返回 true，失败返回 false</span></span><br><span class="line">queue.add(<span class="string">&quot;Element&quot;</span>); <span class="comment">// 入队，成功，异常情况抛出异常</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>出队</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">element</span> <span class="operator">=</span> queue.poll(); <span class="comment">// 出队，成功返回元素，队列为空时返回 null</span></span><br><span class="line"><span class="type">String</span> <span class="variable">element</span> <span class="operator">=</span> queue.remove(); <span class="comment">// 出队，成功返回元素，队列为空时抛出异常</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>查看队列头部</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">element</span> <span class="operator">=</span> queue.peek(); <span class="comment">// 查看头部元素，队列为空时返回 null</span></span><br><span class="line"><span class="type">String</span> <span class="variable">element</span> <span class="operator">=</span> queue.element(); <span class="comment">// 查看头部元素，队列为空时抛出异常</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="3-作为双端队列（Deque）"><a href="#3-作为双端队列（Deque）" class="headerlink" title="3. 作为双端队列（Deque）"></a>3. 作为双端队列（<code>Deque</code>）</h5><ul>
+<li><p><strong>插入元素</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LinkedList&lt;String&gt; deque = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">deque.addFirst(<span class="string">&quot;Element at the beginning&quot;</span>); <span class="comment">// 在开头插入</span></span><br><span class="line">deque.addLast(<span class="string">&quot;Element at the end&quot;</span>); <span class="comment">// 在末尾插入</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>删除元素</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">element</span> <span class="operator">=</span> deque.removeFirst(); <span class="comment">// 删除第一个元素</span></span><br><span class="line"><span class="type">String</span> <span class="variable">element</span> <span class="operator">=</span> deque.removeLast(); <span class="comment">// 删除最后一个元素</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>查看双端队列头部和尾部</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String element = deque.peekFirst(); // 查看第一个元素，队列为空时返回 null</span><br><span class="line">String element = deque.peekLast(); // 查看最后一个元素，队列为空时返回 null</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>双端队列的其他操作</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deque.push(<span class="string">&quot;Element at the beginning&quot;</span>); <span class="comment">// 入栈，类似于 addFirst()</span></span><br><span class="line"><span class="type">String</span> <span class="variable">element</span> <span class="operator">=</span> deque.pop(); <span class="comment">// 出栈，类似于 removeFirst()</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <h4 id="8-Set-接口（HashSet、TreeSet）"><a href="#8-Set-接口（HashSet、TreeSet）" class="headerlink" title="8. Set 接口（HashSet、TreeSet）"></a>8. <strong>Set 接口（HashSet、TreeSet）</strong></h4><ul>
 <li><code>add(E e)</code>: 将指定的元素添加到集合中（如果尚未存在）。</li>
@@ -591,6 +626,27 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">SimpleDateFormat</span> <span class="variable">sdf</span> <span class="operator">=</span><span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;yyyy/MM/dd HH:mm:ss&quot;</span> );</span><br><span class="line">  </span><br><span class="line"><span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">&quot;2016/1/5 12:12:12&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="type">Date</span> <span class="variable">d</span> <span class="operator">=</span> sdf.parse(str);</span><br><span class="line">    System.out.printf(<span class="string">&quot;字符串 %s 通过格式  yyyy/MM/dd HH:mm:ss %n转换为日期对象: %s&quot;</span>,str,d.toString());</span><br><span class="line">&#125; <span class="keyword">catch</span> (ParseException e) &#123;</span><br><span class="line">    <span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="8-异常"><a href="#8-异常" class="headerlink" title="8. 异常"></a>8. 异常</h4><p>运行时异常可以被捕捉，error不能被捕捉<br><strong>运行时异常与非运行时异常的区别：</strong>运行时异常是非受检查异常，它可以在代码中不必显示的处理或抛出；非运行时异常都是受检查异常，必须在代码中显式地处理或者抛出。如果不处理或抛出，则编译器会报错。</p>
+<p><strong>自定义异常：</strong></p>
+<ol>
+<li>创建一个自定义Exception实例</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyException</span> <span class="keyword">extends</span> <span class="title class_">Exception</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>通过<strong>throw</strong> 抛出该异常</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">MyException</span>(object msg)</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>当前方法通过 <strong>throws</strong> 抛出该异常</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">myFunc</span><span class="params">(object msg)</span> <span class="keyword">throws</span> MyException</span><br></pre></td></tr></table></figure>
+
+<p><strong>try():</strong></p>
+<p>把流定义在try()里,try,catch或者finally结束的时候，会自动关闭<br>这种编写代码的方式叫做 <strong>try-with-resources</strong>， 这是从JDK7开始支持的技术</p>
+<p>所有的流，都实现了一个接口叫做 <strong>AutoCloseable</strong>，任何类实现了这个接口，都可以在try()中进行实例化。 并且在try, catch, finally结束的时候自动关闭，回收相关资源。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">File</span> <span class="variable">file</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;D:\\Java program\\Learn\\src\\a.txt&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>(<span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(file))&#123;</span><br><span class="line">    <span class="type">byte</span>[] data = <span class="keyword">new</span> <span class="title class_">byte</span>[(<span class="type">int</span>)file.length()];</span><br><span class="line">    fis.read(data);</span><br><span class="line">    System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(data));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span>(IOException e)&#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
                 
             </div>
